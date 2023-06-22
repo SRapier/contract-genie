@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .center-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+    .search-box {
+      width: 100%;
+      padding: 10px;
+      font-size: 18px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      outline: none;
+    }
+    .search-form {
+      position: relative;
+    }
+    .search-icon {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  </style>
+</head>
+<body>
+  <div class="center-content">
+    <img src="/static/genie.jpg" alt="Logo" style="max-width: 20%; height: auto;">
+    <form class="search-form" method="POST" action="/search">
+      <input class="search-box" type="text" name="query" placeholder="Search">
+      <span class="search-icon">&#x1F50D;</span>
+    </form>
+    {% if results %}
+      <ul>
+        {% for result in results %}
+          <li>{{ result }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+</body>
+</html>
+

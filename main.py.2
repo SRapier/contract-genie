@@ -1,0 +1,19 @@
+from flask import Flask, render_template, request
+
+app = Flask(__name__)
+
+@app.route('/', methods=['GET', 'POST'])
+def search():
+    query = ''
+    if request.method == 'POST':
+        query = request.form['query']
+        # Here is where you would pass `query` to Google Cloud Enterprise Search
+        # and get the results. For now, we'll just echo the query.
+        results = 'You searched for: ' + query
+    else:
+        results = ''
+    return render_template('search.html', results=results)
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=8080, debug=True)
+
